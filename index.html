@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>SimplePay Gateway Demo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style type="text/css">
+        html {
+            font-size: 100%;
+        }
+
+        h1 {
+            color: #77439E;
+        }
+
+        h2 {
+            color: #77439E;
+        }
+
+        h3 {
+            color: #bc75f3;
+        }
+
+        .margin-top-sm {
+            margin-top: .5rem;
+        }
+
+        .margin-top-md {
+            margin-top: 1rem;
+        }
+
+        .margin-top-lg {
+            margin-top: 2rem;
+        }
+
+        input[type='number'] {
+            width: 4rem;
+            text-indent: .2rem;
+        }
+
+        input[type='text'] {
+            width: 3rem;
+            border: none;
+            background: transparent;
+        }
+
+        button.simplepay-button,
+        button.simplepay-button:hover {
+            background: #77439E;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        button.simplepay-button span {
+            position: relative;
+            top: .3rem;
+        }
+
+        button.simplepay-button img {
+            height: 32px;
+        }
+
+        table thead tr {
+            color: #ffffff;
+            background: #77439E;
+        }
+
+        table tfoot tr {
+            background: #F5EFF9;
+            font-weight: bold;
+        }
+
+        table tfoot tr:nth-child(1) {
+            border-top: 3px solid #ffffff;
+        }
+
+        table tfoot tr td {
+            border-top: 1px solid transparent !important;
+        }
+
+        .summary {
+            background: #F8F8F8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    	<div class="container">
+        	<h1>My Test Store</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Shopping Cart</h2>
+            </div>
+        </div>
+
+        <div class="row margin-top-md">
+            <div class="col-md-8">
+                <form id="checkout_form" method="post" action="verify.php">
+                    <table class="table table-striped">
+                        <thead>
+        	                <tr>
+        	                    <th>Product</th>
+        	                    <th>Quantity</th>
+        	                    <th>Price</th>
+        	                </tr>
+                        </thead>
+                        <tbody>
+        	                <tr>
+        	                    <td>Air Conditioner SPL 1.5 HP NP</td>
+        	                    <td>1</td>
+        	                    <td>&#8358; 550</td>
+        	                </tr>
+        	                <tr>
+        	                    <td>Air Conditioner Instalation Kit 5hp</td>
+        	                    <td>1</td>
+        	                    <td>&#8358; 500</td>
+        	                </tr>
+        	                <tr>
+        	                    <td>5M Cables</td>
+        	                    <td>1</td>
+        	                    <td>&#8358; 500</td>
+        	                </tr>
+                        </tbody>
+                        <tfoot>
+        	                <tr>
+        	                    <td colspan="2">Total</td>
+        	                    <td>&#8358;<input type="text" value="1550" readonly/></td>
+        	                </tr>
+                            <tr>
+                                <td colspan="2">Total + Shipping</td>
+                                <td>&#8358;<input type="text" id="amount" name="amount" value="1600" readonly/></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-12 summary">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Order Summary</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>Items:</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>&#8358; 1,550</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>Shipping & Handling:</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>&#8358; <input type="text" id="shipping_costs" value="50" readonly/></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p><b>Total:</b></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>&#8358; <input type="text" value="1600" readonly/></p>
+                        </div>
+                    </div>
+                    <hr/>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Shipping Address</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>31 Kade St, Abuja, Nigeria</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Billing Information</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>John Doe</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>31 Kade St, Abuja, Nigeria</p>
+                        </div>
+                    </div>
+
+                    <div class="row margin-top-lg">
+                        <div class="col-md-12">
+                            <button id="btn-checkout" class="btn btn-lg btn-block simplepay-button">
+                                <span>Pay with</span>
+                                <img src="https://developers.simplepay.ng/img/simplepay-white-logo.png" alt="SimplePay Pay Button" />
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+  	<script src="https://checkout.simplepay.ng/simplepay.js"></script>
+	<script type="text/javascript">
+        // Format amount to lower domination
+        function formatAmount(amount) {
+            var strAmount = amount.toString().split(".");
+            var decimalPlaces = strAmount[1] === undefined ? 0: strAmount[1].length;
+            var formattedAmount = strAmount[0];
+            
+            if (decimalPlaces === 0) {
+                formattedAmount += '00';
+            
+            } else if (decimalPlaces === 1) {
+                formattedAmount += strAmount[1] + '0';
+            
+            } else if (decimalPlaces === 2) {
+                formattedAmount += strAmount[1];
+            }
+            
+            return formattedAmount;
+        }
+        
+		function processPayment (token) {
+            // Use the "token" to validate the payment
+            var form = $('#checkout_form');
+            form.append(
+                $('<input />', { name: 'token', type: 'hidden', value: token })
+            );
+            form.submit();
+		}
+
+		var handler = SimplePay.configure({
+		   token: processPayment,
+		   key: 'test_pu_demo',
+		   image: 'https://developers.simplepay.ng/img/simplepay-white-logo.png'
+		});
+
+		$('#btn-checkout').on('click', function (e) {
+		    e.preventDefault();
+            
+		    handler.open(SimplePay.CHECKOUT,
+		    {
+		       email: 'customer@store.com',
+		       phone: '+23412345678',
+		       description: 'My Test Store Checkout 123-456',
+		       address: '31 Kade St, Abuja, Nigeria',
+		       postal_code: '110001',
+		       city: 'Abuja',
+		       country: 'NG',
+		       amount: formatAmount($('#amount').val()),
+		       currency: 'NGN'
+		    });
+		});
+	</script>
+</body>
+</html>
