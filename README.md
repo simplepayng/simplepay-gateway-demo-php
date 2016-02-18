@@ -1,3 +1,3 @@
 # Simplepay Gateway - PHP Demo
 
-Demo for how to implement SimplePay's Gateway on a PHP site.
+Demo that implements SimplePay's Gateway on a PHP site.
