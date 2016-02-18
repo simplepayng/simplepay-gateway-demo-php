@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>SimplePay Gateway Demo</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>SimplePay Gateway Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style type="text/css">
         html {
             font-size: 100%;
@@ -87,8 +87,8 @@
 </head>
 <body>
     <header>
-    	<div class="container">
-        	<h1>My Test Store</h1>
+        <div class="container">
+            <h1>My Test Store</h1>
         </div>
     </header>
 
@@ -104,34 +104,34 @@
                 <form id="checkout_form" method="post" action="verify.php">
                     <table class="table table-striped">
                         <thead>
-        	                <tr>
-        	                    <th>Product</th>
-        	                    <th>Quantity</th>
-        	                    <th>Price</th>
-        	                </tr>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
                         </thead>
                         <tbody>
-        	                <tr>
-        	                    <td>Air Conditioner SPL 1.5 HP NP</td>
-        	                    <td>1</td>
-        	                    <td>&#8358; 550</td>
-        	                </tr>
-        	                <tr>
-        	                    <td>Air Conditioner Instalation Kit 5hp</td>
-        	                    <td>1</td>
-        	                    <td>&#8358; 500</td>
-        	                </tr>
-        	                <tr>
-        	                    <td>5M Cables</td>
-        	                    <td>1</td>
-        	                    <td>&#8358; 500</td>
-        	                </tr>
+                            <tr>
+                                <td>Air Conditioner SPL 1.5 HP NP</td>
+                                <td>1</td>
+                                <td>&#8358; 550</td>
+                            </tr>
+                            <tr>
+                                <td>Air Conditioner Instalation Kit 5hp</td>
+                                <td>1</td>
+                                <td>&#8358; 500</td>
+                            </tr>
+                            <tr>
+                                <td>5M Cables</td>
+                                <td>1</td>
+                                <td>&#8358; 500</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-        	                <tr>
-        	                    <td colspan="2">Total</td>
-        	                    <td>&#8358;<input type="text" value="1550" readonly/></td>
-        	                </tr>
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td>&#8358;<input type="text" value="1550" readonly/></td>
+                            </tr>
                             <tr>
                                 <td colspan="2">Total + Shipping</td>
                                 <td>&#8358;<input type="text" id="amount" name="amount" value="1600" readonly/></td>
@@ -214,8 +214,8 @@
             </div>
         </div>
     </div>
-  	<script src="https://checkout.simplepay.ng/simplepay.js"></script>
-	<script type="text/javascript">
+    <script src="https://checkout.simplepay.ng/simplepay.js"></script>
+    <script type="text/javascript">
         // Format amount to lower domination
         function formatAmount(amount) {
             var strAmount = amount.toString().split(".");
@@ -235,37 +235,37 @@
             return formattedAmount;
         }
         
-		function processPayment (token) {
+        function processPayment (token) {
             // Use the "token" to validate the payment
             var form = $('#checkout_form');
             form.append(
                 $('<input />', { name: 'token', type: 'hidden', value: token })
             );
             form.submit();
-		}
+        }
 
-		var handler = SimplePay.configure({
-		   token: processPayment,
-		   key: 'test_pu_demo',
-		   image: 'https://developers.simplepay.ng/img/simplepay-white-logo.png'
-		});
+        var handler = SimplePay.configure({
+           token: processPayment,
+           key: 'test_pu_demo',
+           image: ''         //put your logo here (please note you need to put a public web url)
+        });
 
-		$('#btn-checkout').on('click', function (e) {
-		    e.preventDefault();
+        $('#btn-checkout').on('click', function (e) {
+            e.preventDefault();
             
-		    handler.open(SimplePay.CHECKOUT,
-		    {
-		       email: 'customer@store.com',
-		       phone: '+23412345678',
-		       description: 'My Test Store Checkout 123-456',
-		       address: '31 Kade St, Abuja, Nigeria',
-		       postal_code: '110001',
-		       city: 'Abuja',
-		       country: 'NG',
-		       amount: formatAmount($('#amount').val()),
-		       currency: 'NGN'
-		    });
-		});
-	</script>
+            handler.open(SimplePay.CHECKOUT,
+            {
+               email: 'customer@store.com',
+               phone: '+23412345678',
+               description: 'My Test Store Checkout 123-456',
+               address: '31 Kade St, Abuja, Nigeria',
+               postal_code: '110001',
+               city: 'Abuja',
+               country: 'NG',
+               amount: formatAmount($('#amount').val()),
+               currency: 'NGN'
+            });
+        });
+    </script>
 </body>
 </html>
