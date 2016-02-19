@@ -10,7 +10,7 @@ $amount = $_POST["amount"];
 $token = $_POST["token"];
 
 $data = array (
-	'token' => $token
+    'token' => $token
 );
 $data_string = json_encode($data); 
 
@@ -28,15 +28,23 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Length: ' . strlen($data_string)                                                                       
 ));       
 
-curl_exec($ch);
-$responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curl_response = curl_exec($ch);
+$curl_response = preg_split("/\r\n\r\n/",$curl_response);
+$response_content = $curl_response[1];
+$json_response = json_decode(chop($response_content), TRUE);
+
+$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 curl_close($ch);
 
-if ($responseCode == '200') {
-	header('Location: success.html');
-
+if ($response_code == '200') {
+    // even is http status code is 200 we still need to check transaction had issues or not
+    if ($json_response['response_code'] == '20000'){
+        header('Location: success.html');
+    }else{
+        header('Location: failed.html');
+    }
 } else {
-	header('Location: failed.html');
+    header('Location: failed.html');
 }
 ?>
