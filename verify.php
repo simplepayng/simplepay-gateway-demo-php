@@ -6,8 +6,8 @@
 $private_key = 'test_pr_demo';
 
 // Retrieve data returned in payment gateway callback
-$amount = $_POST["amount"];
 $token = $_POST["token"];
+$transaction_id = $_POST["transaction_id"]; // we don't really need this here, is just an example
 
 $data = array (
     'token' => $token
