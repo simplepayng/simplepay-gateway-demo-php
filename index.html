@@ -218,25 +218,6 @@
     </div>
     <script src="https://checkout.simplepay.ng/simplepay.js"></script>
     <script type="text/javascript">
-        // Format amount to lower domination
-        function formatAmount(amount) {
-            var strAmount = amount.toString().split(".");
-            var decimalPlaces = strAmount[1] === undefined ? 0: strAmount[1].length;
-            var formattedAmount = strAmount[0];
-            
-            if (decimalPlaces === 0) {
-                formattedAmount += '00';
-            
-            } else if (decimalPlaces === 1) {
-                formattedAmount += strAmount[1] + '0';
-            
-            } else if (decimalPlaces === 2) {
-                formattedAmount += strAmount[1];
-            }
-            
-            return formattedAmount;
-        }
-        
         // Use the "token" to validate the payment
         function processPayment (token) {
             // put token and transaction ID to be sent forward
@@ -249,7 +230,7 @@
         var handler = SimplePay.configure({
            token: processPayment,
            key: 'test_pu_demo',
-           image: ''         //put your logo here (please note you need to put a public web url)
+           image: ''//put your logo here (please note you need to put a public web url)
         });
 
         $('#btn-checkout').on('click', function (e) {
@@ -264,7 +245,7 @@
                postal_code: '110001',
                city: 'Abuja',
                country: 'NG',
-               amount: formatAmount($('#amount').val()),
+               amount: SimplePay.amountToLower($('#amount').val()),
                currency: 'NGN'
             });
         });
